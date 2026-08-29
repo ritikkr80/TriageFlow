@@ -65,7 +65,7 @@ npm run dev
 
 ---
 
-## ?? Automated Testing
+## Automated Testing
 
 ```bash
 # Run backend safety & API test suite
