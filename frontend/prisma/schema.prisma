@@ -1,0 +1,142 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String   @default("NURSE") // PATIENT, NURSE, PHYSICIAN, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clinician Clinician?
+  patient   Patient?
+  auditLogs AuditLog[]
+}
+
+model Patient {
+  id             String   @id @default(cuid())
+  userId         String?  @unique
+  user           User?    @relation(fields: [userId], references: [id])
+  name           String
+  age            Int
+  sex            String   // MALE, FEMALE, OTHER
+  isPregnant     Boolean  @default(false)
+  allergies      String   @default("[]") // JSON string array
+  medicalHistory String   @default("[]") // JSON string array
+  currentMeds    String   @default("[]") // JSON string array
+  createdAt      DateTime @default(now())
+
+  sessions TriageSession[]
+}
+
+model Clinician {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  staffBadge  String   @unique
+  department  String   @default("Emergency Department")
+  station     String   @default("Triage Station 1")
+  createdAt   DateTime @default(now())
+
+  reviews ClinicianReview[]
+}
+
+model TriageSession {
+  id             String   @id @default(cuid())
+  patientId      String
+  patient        Patient  @relation(fields: [patientId], references: [id])
+  arrivalMode    String   @default("WALK_IN") // WALK_IN, AMBULANCE, WHEELCHAIR, OTHER
+  chiefComplaint String
+  symptoms       String   @default("[]") // JSON string array
+  durationHours  Float?
+  nurseObs       String?
+  gcsScore       Int?
+  status         String   @default("PENDING_REVIEW") // PENDING_REVIEW, TRIAGED, OVERRIDDEN, DISCHARGED
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  vitals      VitalsRecord?
+  assessment  TriageAssessment?
+  redFlags    RedFlagRecord[]
+  reviews     ClinicianReview[]
+}
+
+model VitalsRecord {
+  id          String        @id @default(cuid())
+  sessionId   String        @unique
+  session     TriageSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  heartRate   Int?
+  systolicBp  Int?
+  diastolicBp Int?
+  oxygenSat   Int?
+  respRate    Int?
+  temperature Float?
+  painScore   Int?
+  recordedAt  DateTime      @default(now())
+}
+
+model TriageAssessment {
+  id                      String        @id @default(cuid())
+  sessionId               String        @unique
+  session                 TriageSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  esiLevel                Int           // 1 to 5
+  acuityLabel             String
+  confidenceScore         Float
+  primaryDrivers          String        @default("[]") // JSON string array
+  recommendedRouting      String
+  reassessIntervalMinutes Int           @default(60)
+  clinicianReviewRequired Boolean       @default(true)
+  requiresResuscitation   Boolean       @default(false)
+  missingCriticalData     String        @default("[]") // JSON string array
+  patientExplanation      String
+  clinicalRationale       String
+  safetyDisclaimer        String
+  aiProvider              String
+  evaluatedAt             DateTime      @default(now())
+}
+
+model RedFlagRecord {
+  id            String        @id @default(cuid())
+  sessionId     String
+  session       TriageSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  code          String
+  category      String
+  severity      String        // CRITICAL, HIGH, MODERATE
+  description   String
+  triggeredBy   String
+  deterministic Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+}
+
+model ClinicianReview {
+  id             String        @id @default(cuid())
+  sessionId      String
+  session        TriageSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  clinicianId    String
+  clinician      Clinician     @relation(fields: [clinicianId], references: [id])
+  confirmedEsi   Int           // ESI 1 to 5 confirmed by human clinician
+  isOverride     Boolean       @default(false)
+  overrideReason String?
+  reviewNotes    String?
+  reviewedAt     DateTime      @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  action     String   // e.g., TRIAGE_INTAKE, CLINICIAN_OVERRIDE, CLINICIAN_CONFIRM, SYSTEM_CONFIG_UPDATE
+  actorId    String?
+  actorRole  String   @default("SYSTEM")
+  user       User?    @relation(fields: [actorId], references: [id])
+  entityType String   // e.g., TriageSession, ClinicianReview, User
+  entityId   String?
+  details    String   @default("{}") // JSON metadata
+  ipAddress  String?
+  timestamp  DateTime @default(now())
+}

@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+
+# Local Environment & SQLite Database files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+dev.db
+dev.db-journal
+*.db
+*.db-journal
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
