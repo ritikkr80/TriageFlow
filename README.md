@@ -1,4 +1,16 @@
-# TriageFlow - Mission-Critical AI Emergency Patient Triage System
+# TriageFlow — AI Emergency Patient Triage System
+
+> 🏥 **Accenture Innovation Challenge 2026** · Team **NeutronHunter** · IIT ISM Dhanbad
+
+## 🔗 Live Links
+
+| | URL |
+|---|---|
+| 🚀 **Live App (Vercel)** | [triageflow-one.vercel.app](https://triageflow-one.vercel.app) |
+| 📦 **GitHub Repository** | [github.com/ritikkr80/TriageFlow](https://github.com/ritikkr80/TriageFlow) |
+| 🔍 **Vercel Dashboard** | [vercel.com/ritikkr80s-projects/triageflow](https://vercel.com/ritikkr80s-projects/triageflow) |
+
+---
 
 TriageFlow is a production-oriented emergency triage decision-support platform designed to assist emergency department nurses and clinicians. It combines **deterministic emergency red-flag safety rules** with **structured AI clinical reasoning (ESI 1?5 triage)**, human-in-the-loop clinician confirmation, robust audit logging, and role-based access control.
 
