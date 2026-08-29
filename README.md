@@ -1,6 +1,6 @@
 # TriageFlow — AI Emergency Patient Triage System
 
-> 🏥 Accenture Innovation Challenge 2026 · Team **NeutronHunter** · IIT ISM Dhanbad
+> Accenture Innovation Challenge 2026 · Team *NeutronHunter* · IIT ISM Dhanbad
 
 ## 🔗 Live Links
 
@@ -18,7 +18,7 @@ Developed for the **Accenture Innovation Challenge 2026** by Team **NeutronHunte
 
 ---
 
-## ?? Key Features & Safety Principles
+## Key Features & Safety Principles
 
 1. **Deterministic Safety Supremacy:**
    - Emergency red flags (e.g. crushing chest pain with diaphoresis, stroke FAST signs, severe shock vitals SBP < 80 mmHg, hypoxia SpO2 < 85%, pediatric fever in neonates) trigger immediate ESI 1/2 safety overrides independently of the LLM.
@@ -33,7 +33,7 @@ Developed for the **Accenture Innovation Challenge 2026** by Team **NeutronHunte
 
 ---
 
-## ??? Tech Stack
+## Tech Stack
 
 - **Frontend & Backend:** Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Prisma ORM.
 - **AI Microservice:** Python 3.12, FastAPI, Pydantic v2, Pytest, Uvicorn.
@@ -41,7 +41,7 @@ Developed for the **Accenture Innovation Challenge 2026** by Team **NeutronHunte
 
 ---
 
-## ?? Quick Start Guide
+## Quick Start Guide
 
 ### Option A: 1-Click Launch (Windows)
 Double click `start_all.bat` or run:
@@ -73,4 +73,5 @@ python -m pytest backend/tests -v
 ```
 
 Thank You 
----*Ritik*
+
+*Ritik*
