@@ -1,14 +1,14 @@
 # TriageFlow — AI Emergency Patient Triage System
 
-> 🏥 **Accenture Innovation Challenge 2026** · Team **NeutronHunter** · IIT ISM Dhanbad
+> 🏥 Accenture Innovation Challenge 2026 · Team **NeutronHunter** · IIT ISM Dhanbad
 
 ## 🔗 Live Links
 
 | | URL |
 |---|---|
-| 🚀 **Live App (Vercel)** | [triageflow-one.vercel.app](https://triageflow-one.vercel.app) |
-| 📦 **GitHub Repository** | [github.com/ritikkr80/TriageFlow](https://github.com/ritikkr80/TriageFlow) |
-| 🔍 **Vercel Dashboard** | [vercel.com/ritikkr80s-projects/triageflow](https://vercel.com/ritikkr80s-projects/triageflow) |
+|  **Live App (Vercel)** | [triageflow-one.vercel.app](https://triageflow-one.vercel.app) |
+|  **GitHub Repository** | [github.com/ritikkr80/TriageFlow](https://github.com/ritikkr80/TriageFlow) |
+
 
 ---
 
@@ -35,7 +35,7 @@ Developed for the **Accenture Innovation Challenge 2026** by Team **NeutronHunte
 
 ## ??? Tech Stack
 
-- **Frontend & App Backend:** Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Prisma ORM.
+- **Frontend & Backend:** Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Prisma ORM.
 - **AI Microservice:** Python 3.12, FastAPI, Pydantic v2, Pytest, Uvicorn.
 - **AI Models:** Extensible Provider Abstraction (Google Gemini 2.5/3.0, OpenAI GPT-4o, and High-Fidelity Local Clinical Simulator).
 
@@ -72,10 +72,5 @@ npm run dev
 python -m pytest backend/tests -v
 ```
 
----
-
-## ?? Role Dashboards
-
-- **Patient Portal (`/patient`):** 4-step intake wizard, instant red-flag interceptor modal, plain-language triage result card.
-- **Clinician ED Board (`/clinician`):** Live waiting queue sorted by ESI urgency, side-by-side AI vs. deterministic red flags, 1-click confirm / override drawer.
-- **Admin & Governance (`/admin`):** Filterable audit logs, AI provider selector, safety rule toggles.
+Thank You 
+---*Ritik*
