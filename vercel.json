@@ -5,10 +5,10 @@
       "framework": "nextjs"
     },
     "backend": {
-      "root": "services/ai",
-      "framework": "fastapi",
-      "entrypoint": "main.py"
-    }
+  "root": "services/ai",
+  "framework": "fastapi",
+  "entrypoint": "app/main.py"
+}
   },
   "rewrites": [
     {
